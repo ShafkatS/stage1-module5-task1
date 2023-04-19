@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 public class InterfaceCreator {
 
     public Predicate<List<String>> isValuesStartWithUpperCase() {
-        return x -> {
+       return x -> {
             boolean result = true;
             for (String e : x) {
                 char str = e.charAt(0);
@@ -28,14 +28,12 @@ public class InterfaceCreator {
 
     public Consumer<List<Integer>> addEvenValuesAtTheEnd() {
       return x -> {
-            boolean result = true;
-            for (String e : x) {
-                char str = e.charAt(0);
-                if (!Character.isUpperCase(str)) {
-                    result = false;
+            int length = x.size();
+            for (int i = 0; i < length; i++) {
+                if (x.get(i) % 2 == 0) {
+                    x.add(x.get(i));
                 }
             }
-            return result;
         };
     }
 
@@ -55,8 +53,8 @@ public class InterfaceCreator {
     }
 
     public Function<List<String>, Map<String, Integer>> stringSize() {
-    Map<String, Integer> map = new HashMap<>();
         return x -> {
+            Map<String, Integer> map = new HashMap<>();
             for(String s : x){
                 map.put(s, s.length());
             }
@@ -65,8 +63,9 @@ public class InterfaceCreator {
     }
 
     public BiFunction<List<Integer>, List<Integer>, List<Integer>> concatList() {
-       List<Integer> list3 = new ArrayList<>();
+       
         return (list1, list2) -> {
+            List<Integer> list3 = new ArrayList<>();
             list3.addAll(list1);
             list3.addAll(list2);
             return list3;
